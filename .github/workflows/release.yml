@@ -16,14 +16,7 @@ jobs:
       name: pypi
       url: https://pypi.org/project/gitwhodid
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install uv and setup the python version
-        uses: astral-sh/setup-uv@v5
-
-      - name: Install the project
-        run: uv sync --all-groups
+      - uses: ./.github/actions/setup
 
       - name: Build wheel
         run: uv build
