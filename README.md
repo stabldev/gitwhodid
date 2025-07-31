@@ -2,7 +2,11 @@
 
 > Who did that? A CLI to reveal Git history by file.
 
-`gitwhodid` helps you find out who contributed to a specific file in your Git repo - how much, how recently, and with what kind of commits.
+![demo](assets/demo.png)
+
+## Overview
+
+`gitwhodid` helps you find out who contributed to a specific file in your Git repo - how much, how recently, and with what kind of commits. (it's a fun weekend project)
 
 ## Features
 
@@ -25,10 +29,6 @@ cd gitwhodid
 uv sync
 uv run gitwhodid <file>
 ```
-
-## Why?
-
-Sometimes you just want to know who touched this file - either out of curiosity, blame, or celebration. `gitwhodid` makes it easy (and a little fun).
 
 ## License
 
