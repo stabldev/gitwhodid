@@ -1,4 +1,8 @@
 from datetime import datetime
+from rich.console import Console
+from rich.table import Table
+
+console = Console()
 
 from gitwhodid.types import Result
 
@@ -8,17 +12,25 @@ def human_time(t: int):
     return dt.strftime("%Y-%m-%d %H:%M")
 
 def print_result(result: Result):
-    print(f"📄 File: {result.file}")
-    print(f"📏 Total lines: {result.loc}\n")
+    console.print(f"[bold magenta]📄 File:[/bold magenta] {result.file}")
+    console.print(f"[bold cyan]📏 Total lines:[/bold cyan] {result.loc}\n")
 
-    print("👥 Top contributors:")
+    # contributors
+    console.print("[bold green]👥 Top contributors:[/bold green]")
+    table = Table(box=None, show_header=False, padding=(0,1))
     medals = ["🥇", "🥈", "🥉"]
-    for i, contributer in enumerate(result.contributors):
-        medal = medals[i] if i < 3 else " "
-        author = contributer.author
-        percent = f"{contributer.percent}%"
-        print(f"    {medal} {author} - {percent} (last seen {contributer.last_seen})")
+    for i, contributor in enumerate(result.contributors):
+        medal = medals[i] if i < 3 else "  "
+        last_seen = contributor.last_seen
+        table.add_row(
+            medal,
+            f"[bold]{contributor.author}[/bold]",
+            f"{contributor.percent}%",
+            f"[dim]last seen {last_seen}[/dim]",
+        )
+    console.print(table)
 
-    print("\n💬 Notable commits:")
+    # notable commits
+    console.print("\n[bold yellow]💬 Notable commits:[/bold yellow]")
     for commit in result.notable_commits:
-        print(f'    "{commit.commit}" - {commit.author}')
+        console.print(f' • “[italic]{commit.commit}[/italic]” — [bold]{commit.author}[/bold]')
