@@ -6,6 +6,7 @@ from gitwhodid.types import Result
 
 console = Console()
 
+
 def format_time(t: float) -> str:
     dt = datetime.fromtimestamp(t)
     delta = datetime.now() - dt
@@ -17,13 +18,14 @@ def format_time(t: float) -> str:
         return "yesterday"
     return f"{days} days ago"
 
+
 def print_result(result: Result):
     console.print(f"[bold magenta]📄 File:[/bold magenta] {result.file}")
     console.print(f"[bold cyan]📏 Total lines:[/bold cyan] {result.loc}\n")
 
     # contributors
     console.print("[bold green]👥 Top contributors:[/bold green]")
-    table = Table(box=None, show_header=False, padding=(0,1))
+    table = Table(box=None, show_header=False, padding=(0, 1))
     medals = ["🥇", "🥈", "🥉"]
     for i, contributor in enumerate(result.contributors):
         medal = medals[i] if i < 3 else "  "
@@ -39,4 +41,6 @@ def print_result(result: Result):
     # notable commits
     console.print("\n[bold yellow]💬 Notable commits:[/bold yellow]")
     for commit in result.notable_commits:
-        console.print(f' • “[italic]{commit.commit}[/italic]” - [bold]{commit.author}[/bold]')
+        console.print(
+            f" • “[italic]{commit.commit}[/italic]” - [bold]{commit.author}[/bold]"
+        )
