@@ -2,7 +2,7 @@ from collections import Counter, defaultdict
 import subprocess
 
 from gitwhodid.types import BlameLine, Contributor, NotableCommit, Result
-from gitwhodid.utils import human_time
+from gitwhodid.utils import format_time
 
 
 class Blame:
@@ -83,7 +83,7 @@ class Blame:
                 Contributor(
                     author=author,
                     percent=round(percent),
-                    last_seen=human_time(last_seen[author]),
+                    last_seen=format_time(last_seen[author]),
                 )
             )
 

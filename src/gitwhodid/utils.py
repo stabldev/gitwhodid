@@ -2,14 +2,20 @@ from datetime import datetime
 from rich.console import Console
 from rich.table import Table
 
-console = Console()
-
 from gitwhodid.types import Result
 
+console = Console()
 
-def human_time(t: int):
+def format_time(t: float) -> str:
     dt = datetime.fromtimestamp(t)
-    return dt.strftime("%Y-%m-%d %H:%M")
+    delta = datetime.now() - dt
+    days = delta.days
+
+    if days == 0:
+        return "today"
+    elif days == 1:
+        return "yesterday"
+    return f"{days} days ago"
 
 def print_result(result: Result):
     console.print(f"[bold magenta]📄 File:[/bold magenta] {result.file}")
@@ -33,4 +39,4 @@ def print_result(result: Result):
     # notable commits
     console.print("\n[bold yellow]💬 Notable commits:[/bold yellow]")
     for commit in result.notable_commits:
-        console.print(f' • “[italic]{commit.commit}[/italic]” — [bold]{commit.author}[/bold]')
+        console.print(f' • “[italic]{commit.commit}[/italic]” - [bold]{commit.author}[/bold]')
