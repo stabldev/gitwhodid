@@ -1,0 +1,11 @@
+name: Setup Python Project
+description: Reusable setup for project setup
+runs:
+  using: "composite"
+  steps:
+    - name: Install uv and setup the python version
+      uses: astral-sh/setup-uv@v5
+
+    - name: Install the project
+      run: uv sync --all-groups
+      shell: bash
