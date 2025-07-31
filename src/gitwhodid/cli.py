@@ -1,13 +1,15 @@
 import click
 
 from gitwhodid.blame import Blame
+from gitwhodid.utils import print_result
 
 
 @click.command()
 @click.argument("file", type=click.Path(exists=True))
 def main(file: str):
     try:
-        click.echo(Blame().run(file))
+        result = Blame().run(file)
+        print_result(result)
     except Exception as e:
         click.secho(e, fg="red", err=True)
 

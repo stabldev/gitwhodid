@@ -14,6 +14,8 @@ class Blame:
             self.blames = self._get_blames(file)
             notable_commits = self._get_notable_commits()
             contributors = self._get_contributors()
+            # TODO: add flag for sorting
+            contributors.sort(key=lambda x: x.percent, reverse=True)
 
             return Result(
                 file=file,
@@ -80,7 +82,7 @@ class Blame:
             contributers.append(
                 Contributor(
                     author=author,
-                    percent=f"{round(percent)}%",
+                    percent=round(percent),
                     last_seen=human_time(last_seen[author]),
                 )
             )

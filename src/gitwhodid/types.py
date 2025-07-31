@@ -19,7 +19,7 @@ class BlameLine:
 @dataclass
 class Contributor:
     author: str
-    percent: str
+    percent: int
     last_seen: str
 
 
