@@ -1,16 +1,13 @@
 [project]
 name = "gitwhodid"
 version = "0.1.0"
-description = "Add your description here"
+description = "Who did that? A CLI to reveal Git history by file."
 readme = "README.md"
 authors = [
     { name = "stabldev", email = "114811070+stabldev@users.noreply.github.com" },
 ]
 requires-python = ">=3.13"
-dependencies = [
-    "click>=8.2.1",
-    "rich>=14.1.0",
-]
+dependencies = ["click>=8.2.1", "rich>=14.1.0"]
 
 [project.scripts]
 gitwhodid = "gitwhodid.cli:main"
