@@ -1,4 +1,4 @@
-# `gitwhodid`
+# gitwhodid
 
 > Who did that? A CLI to reveal Git history by file.
 
@@ -28,6 +28,16 @@ git clone https://github.com/stabldev/gitwhodid
 cd gitwhodid
 uv sync
 uv run gitwhodid <file>
+```
+
+### Git Integration (Optional)
+
+Add this alias to your Git config to run `gitwhodid` as a Git subcommand:
+
+```bash
+git config --global alias.whodid '!gitwhodid'
+# now you can use it like
+git whodid <file>
 ```
 
 ## License
