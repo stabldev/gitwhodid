@@ -1,5 +1,5 @@
-from collections import Counter, defaultdict
 import subprocess
+from collections import Counter, defaultdict
 
 from gitwhodid.types import BlameLine, Contributor, NotableCommit, Result
 from gitwhodid.utils import format_time
