@@ -2,7 +2,7 @@
 
 > Who did that? A CLI to reveal Git history by file.
 
-![demo](demo.png)
+![demo](assets/demo.png)
 
 ## Overview
 
