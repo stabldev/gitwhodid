@@ -11,14 +11,7 @@ jobs:
     name: Lint
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install uv and setup the python version
-        uses: astral-sh/setup-uv@v5
-
-      - name: Install the project
-        run: uv sync --all-groups
+      - uses: ./.github/actions/setup-python-project
 
       - name: Run ruff check
         run: uv run ruff check .
@@ -30,14 +23,7 @@ jobs:
     name: Test
     runs-on: ubuntu-latest
     steps:
-      - name: Checkout
-        uses: actions/checkout@v4
-
-      - name: Install uv and setup the python version
-        uses: astral-sh/setup-uv@v5
-
-      - name: Install the project
-        run: uv sync --all-groups
+      - uses: ./.github/actions/setup-python-project
 
       - name: Run pytest
         run: uv run pytest

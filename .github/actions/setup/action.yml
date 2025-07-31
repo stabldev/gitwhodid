@@ -1,0 +1,14 @@
+name: Setup Python Project
+description: Reusable setup for project setup
+runs:
+  using: "composite"
+  steps:
+    - name: Checkout
+      uses: actions/checkout@v4
+
+    - name: Install uv and setup the python version
+      uses: astral-sh/setup-uv@v5
+
+    - name: Install the project
+      shell: sh
+      run: uv sync --all-groups
