@@ -20,8 +20,8 @@ jobs:
       - name: Install the project
         run: uv sync --all-groups
 
-      - name: Run ruff
-        run: uv run ruff .
+      - name: Run ruff check
+        run: uv run ruff check .
 
   test:
     name: Test
