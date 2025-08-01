@@ -20,6 +20,7 @@ class Blame:
     Attributes:
         blames (list[BlameLine]): Parsed blame lines.
     """
+
     def __init__(self) -> None:
         self.blames: list[BlameLine] = []
 
