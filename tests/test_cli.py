@@ -1,3 +1,8 @@
+"""
+tests.test_cli
+Test file for CLI commands and logic.
+"""
+
 import os
 import subprocess
 from pathlib import Path
@@ -9,6 +14,7 @@ from gitwhodid.cli import main
 
 
 def test_help_command() -> None:
+    """Test if `--help` command is working correctly."""
     runner = CliRunner()
     result = runner.invoke(main, ["--help"])
 
@@ -17,6 +23,7 @@ def test_help_command() -> None:
 
 
 def test_version_command() -> None:
+    """Test if `--version` command is working correctly."""
     runner = CliRunner()
     result = runner.invoke(main, ["--version"])
 
@@ -25,6 +32,14 @@ def test_version_command() -> None:
 
 
 def test_gitwhodid_basic(tmp_path: Path) -> None:
+    """Test with temporary git repo.
+
+    Initializes a tmp git repo at `tmp_path` / repo directory, create a file and commit by
+    a test user. Run the CLI and check if test user exists on the output.
+
+    Args:
+        tmp_path: Pytest fixture for working on a temporary directory.
+    """
     repo = tmp_path / "repo"
     repo.mkdir()
     old_cwd = os.getcwd()
@@ -56,4 +71,9 @@ def test_gitwhodid_basic(tmp_path: Path) -> None:
 
 
 def run_git(*args: str) -> None:
+    """Runs a git command using subprocess for use in tests.
+
+    Args:
+        *args (str): Individual git command arguments (e.g., "init", "status").
+    """
     subprocess.run(["git"] + list(args), check=True)

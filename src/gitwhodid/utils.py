@@ -1,3 +1,8 @@
+"""
+gitwhodid.utils
+Utility functions for gitwhodid modules.
+"""
+
 from datetime import datetime
 
 from rich.console import Console
@@ -9,18 +14,38 @@ console = Console()
 
 
 def format_time(t: float) -> str:
+    """Format a timestamp in a readable format.
+
+    Converts a timestamp (float) time object to a proper string format which is much readable
+    and return format is based-on day format..
+
+    Args:
+        t (float): A date timestamp object to convert.
+
+    Returns:
+        str: Formatted string from the timestamp.
+    """
     dt = datetime.fromtimestamp(t)
     delta = datetime.now() - dt
     days = delta.days
 
     if days == 0:
         return "today"
-    elif days == 1:
+    if days == 1:
         return "yesterday"
     return f"{days} days ago"
 
 
 def print_result(result: Result):
+    """Prints the result from the `Result` object.
+
+    Uses rich library's `Console` object to print en-riched result such as filename, loc,
+    contributors and notable commits of each author.
+
+    Args:
+        result (Result): A result object created from the `Blame.run(file)` method.
+    """
+
     console.print(f"[bold magenta]📄 File:[/bold magenta] {result.file}")
     console.print(f"[bold cyan]📏 Total lines:[/bold cyan] {result.loc}\n")
 

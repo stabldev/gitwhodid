@@ -1,9 +1,15 @@
+"""
+tests.test_utils
+Test file for utilility functions.
+"""
+
 from datetime import datetime, timedelta
 
 from gitwhodid.utils import format_time
 
 
-def test_utils() -> None:
+def test_format_date() -> None:
+    """Test if the `format_date` function is correctly working on different dates."""
     today = datetime.now().timestamp()
     assert format_time(today) == "today"
 
