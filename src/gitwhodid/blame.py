@@ -14,11 +14,11 @@ from gitwhodid.utils import format_time
 class Blame:
     """Parses `git blame` output and stores the result as BlameLine objects.
 
-    This class provides a `run(file)` method that execute `git blame` on the
+    This class provides a `run(file)` method that executes `git blame` on the
     given file and returns a structured result.
 
     Attributes:
-        blames (list[BlameLine]): Parsed blame lines.
+        blames (list[BlameLine]): Parsed blame lines from the file.
     """
 
     def __init__(self) -> None:
@@ -57,17 +57,16 @@ class Blame:
 
     @staticmethod
     def _get_blames(file: str) -> list[BlameLine]:
-        """Runs `git blame` on the given file and parse its output.
+        """Runs `git blame` on the given file and parses its output.
 
-        Loop over the parsed output, line by line and extracts blame metadata
-        such as author, time, commit summary from the porceclain-format output
-        and returns a list of BlameLine objects.
+        Extracts blame metadata (author, time, commit summary) from the
+        porcelain-format output and returns a list of BlameLine objects.
 
         Args:
-            file (str): Path to the file to parse.
+            file (str): Path to the file to analyze.
 
         Returns:
-            list[BlameLine]: A list of constructed blame objects.
+            list[BlameLine]: The parsed blame data.
         """
         cmd = ["git", "blame", file, "--line-porcelain"]
         result = subprocess.run(cmd, capture_output=True, text=True, check=True)
@@ -95,7 +94,7 @@ class Blame:
         return blames
 
     def _get_notable_commits(self) -> list[NotableCommit]:
-        """Finds each authors most frequent commit from the blame results.
+        """Finds each author's most frequent commit from the blame results.
 
         Loop over the blames and construct a counter object which increments over each iteration
         and returns the most common commit of each author.
