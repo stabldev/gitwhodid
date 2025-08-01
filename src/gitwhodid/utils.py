@@ -45,7 +45,6 @@ def print_result(result: Result):
     Args:
         result (Result): A result object created from the `Blame.run(file)` method.
     """
-
     console.print(f"[bold magenta]📄 File:[/bold magenta] {result.file}")
     console.print(f"[bold cyan]📏 Total lines:[/bold cyan] {result.loc}\n")
 

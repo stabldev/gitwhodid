@@ -9,7 +9,6 @@ from dataclasses import dataclass
 @dataclass
 class BlameLine:
     """Dataclass for parsed blame output."""
-
     author: str
     author_time: str
     commit: str
@@ -27,7 +26,6 @@ class BlameLine:
 @dataclass
 class Contributor:
     """Dataclass for contributer details."""
-
     author: str
     percent: int
     last_seen: str
@@ -36,7 +34,6 @@ class Contributor:
 @dataclass
 class NotableCommit:
     """Dataclass for notable commits of each author."""
-
     author: str
     commit: str
 
@@ -44,7 +41,6 @@ class NotableCommit:
 @dataclass
 class Result:
     """Dataclass for finale output."""
-
     file: str
     loc: int
     contributors: list[Contributor]

@@ -20,7 +20,6 @@ class Blame:
     Attributes:
         blames (list[BlameLine]): Parsed blame lines.
     """
-
     def __init__(self) -> None:
         self.blames: list[BlameLine] = []
 
@@ -69,7 +68,6 @@ class Blame:
         Returns:
             list[BlameLine]: A list of constructed blame objects.
         """
-
         cmd = ["git", "blame", file, "--line-porcelain"]
         result = subprocess.run(cmd, capture_output=True, text=True, check=True)
         if result.stderr:
@@ -104,7 +102,6 @@ class Blame:
         Returns:
             list[NotableCommit]: A list of notable commit objects.
         """
-
         commit_counts: defaultdict[str, Counter[str]] = defaultdict(Counter)
         for blame in self.blames:
             author = blame.author
@@ -125,7 +122,6 @@ class Blame:
         Returns:
             list[Contributor]: A list of contributor objects.
         """
-
         last_seen: defaultdict[str, int] = defaultdict(int)
         for blame in self.blames:
             author = blame.author
