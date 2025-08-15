@@ -1,0 +1,29 @@
+# Maintainer: stabldev <thestabldev@gmail.com>
+
+pkgrel=1
+pkgdesc="Who did that? A CLI to reveal Git history by file."
+arch=("any")
+url="https://github.com/stabldev/gitwhodid"
+license=("MIT")
+depends=(
+  "python-click"
+  "python-rich"
+)
+makedepends=(
+  "python-build"
+  "python-installer"
+  "python-wheel"
+  "python-uv-build"
+)
+source=("$pkgname-$pkgver.tar.gz::$url/archive/refs/tags/v$pkgver.tar.gz")
+sha256sums=()
+
+build() {
+  cd "$srcdir/gitwhodid-$pkgver"
+  python -m build --wheel --no-isolation
+}
+
+package() {
+  cd "$srcdir/gitwhodid-$pkgver"
+  python -m installer --destdir="$pkgdir" dist/*.whl
+}
