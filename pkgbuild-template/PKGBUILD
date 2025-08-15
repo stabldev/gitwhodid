@@ -1,4 +1,6 @@
 # Maintainer: stabldev <thestabldev@gmail.com>
+# This is not a full PKGBUILD
+# pkgname, pkgver, and sha256sums are to be generated
 
 pkgrel=1
 pkgdesc="Who did that? A CLI to reveal Git history by file."
