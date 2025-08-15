@@ -5,16 +5,15 @@ on:
     tags:
       - "v*"
 
-permissions:
-  id-token: write
-
 jobs:
-  release:
+  pypi-publish:
     name: Publish to PyPI
     runs-on: ubuntu-latest
     environment:
       name: pypi
       url: https://pypi.org/project/gitwhodid
+    permissions:
+      id-token: write
     steps:
       - uses: actions/checkout@v4
       - uses: ./.github/actions/setup
@@ -24,3 +23,20 @@ jobs:
 
       - name: Publish package
         run: uv publish
+
+  aur-publish:
+    name: Publish to AUR
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Set pkgver
+        id: version
+        run: echo "pkgver=${GITHUB_REF_NAME#v}" >> $GITHUB_OUTPUT
+
+      - name: Publish to AUR
+        uses: stabldev/aur-publish-action@v1
+        with:
+          pkgname: gitwhodid
+          pkgver: ${{ steps.version.outputs.pkgver }}
+          aur_ssh_private_key: ${{ secrets.AUR_SSH_PRIVATE_KEY }}
